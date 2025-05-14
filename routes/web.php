@@ -22,6 +22,10 @@ Route::get('/ubicacion', function () {
     return view('MaderAlpes.ubicacion');
 })->name('ubicacion');
 
+Route::get('/productos', function () {
+    return view('producto');
+})->name('productos');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

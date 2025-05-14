@@ -1,0 +1,50 @@
+.elegant-table {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.elegant-table thead th {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.elegant-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.elegant-table tbody tr:hover {
+    background-color: rgba(106, 17, 203, 0.05);
+    transform: translateX(5px);
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+}
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 3px;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}

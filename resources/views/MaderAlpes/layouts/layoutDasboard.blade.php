@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Tabla stylo CSS -->
+    <link rel="stylesheet" href="/css/tableStyle.css">
     <style>
         .sidebar {
             width: 250px;
@@ -73,13 +75,13 @@
                 <div class="p-3">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-1">
-                            <a href="/home" class="nav-link text-dark d-flex align-items-center">
+                            <a href="{{route('dashboard')}}" class="nav-link text-dark d-flex align-items-center">
                                 <i class="bi bi-grid me-3"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item mb-1">
-                            <a href="/events" class="nav-link text-dark d-flex align-items-center">
+                            <a href="{{route('productos')}}" class="nav-link text-dark d-flex align-items-center">
                                 <i class="bi bi-box-seam me-3"></i>
                                 <span>Productos</span>
                             </a>
@@ -115,7 +117,7 @@
                             type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="text-start">
                             <div class="fw-bold small text-truncate">{{ Auth::user()->name }}</div>
-                            <div class="text-muted xsmall text-truncate ">{{ Auth::user()->email }}</div>
+                            <div class="text-muted xsmall text-truncate">{{ Auth::user()->email }}</div>
                         </div>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="userDropdown">
@@ -146,10 +148,10 @@
             </div>
         </aside>
 
-
-        @yield('contenido')
-            
-        
+        <!-- Main Content -->
+        <main class="main-content flex-grow-1 p-4">
+            @yield('contenido')
+        </main>
     </div>
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
