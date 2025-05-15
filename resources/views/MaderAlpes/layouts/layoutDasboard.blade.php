@@ -201,7 +201,98 @@
             });
         });
     </script>
+    <script>
+        // Función para previsualizar imágenes
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const container = document.getElementById('imagePreviewContainer');
 
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    container.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Función para resetear la previsualización
+        function resetImagePreview(previewId, containerId) {
+            const preview = document.getElementById(previewId);
+            const container = document.getElementById(containerId);
+
+            preview.src = '#';
+            container.style.display = 'none';
+        }
+
+        // Función para previsualizar imágenes en edición
+        function previewEditImage(input, id) {
+            const currentImageContainer = document.getElementById('currentImageContainer' + id);
+            const newImageContainer = document.getElementById('newImageContainer' + id);
+            const preview = document.getElementById('previewEdit' + id);
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    newImageContainer.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                newImageContainer.style.display = 'none';
+            }
+        }
+
+        // Búsqueda en la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const table = document.getElementById('tabla-productos');
+                    const rows = table.getElementsByTagName('tr');
+
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        const cells = row.getElementsByTagName('td');
+                        let found = false;
+
+                        for (let j = 0; j < cells.length; j++) {
+                            const cellText = cells[j].textContent || cells[j].innerText;
+
+                            if (cellText.toLowerCase().indexOf(searchTerm) > -1) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        row.style.display = found ? '' : 'none';
+                    }
+                });
+            }
+
+            // Validación de formularios Bootstrap
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        });
+    </script>
+    </script>
     <script>
         // Toggle sidebar en móvil
         document.getElementById('sidebarToggle').addEventListener('click', function() {
