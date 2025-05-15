@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -28,10 +29,17 @@ class ProductoController extends Controller
     {
 
 
-        // Manejo de la imagen
+        // Inicializar la variable de ruta de imagen
         $imagenPath = null;
-        if ($request->hasFile('imagen')) {
+
+        /*  // Procesar la imagen si se ha subido una
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            // Guardar la imagen en storage/app/public/productos
             $imagenPath = $request->file('imagen')->store('productos', 'public');
+        }
+ */
+        if ($request->hasFile('imagen')) {
+            $imagenPath = Storage::put('productos', $request->imagen);
         }
 
         // Creación del producto
@@ -43,9 +51,10 @@ class ProductoController extends Controller
             'imagen' => $imagenPath,
         ]);
 
-        // Redirección con mensaje de éxito
-        return redirect()->back()
-            ->with('success', 'Producto creado exitosamente');
+
+        // Redireccionar con mensaje de éxito
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto creado correctamente.');
     }
 
 
@@ -70,7 +79,24 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $imagenPath = null;
+
+        if ($request->hasFile('imagen')) {
+            $imagenPath = Storage::put('productos', $request->imagen);
+        }
+
+
+        $producto->update([
+            'nombre' => $request->input('nombre'),
+            'categoria' => $request->input(('categoria')),
+            'precio' => $request->input('precio'),
+            'descripcion' => $request->input('descripcion'),
+            'imagen' => $imagenPath,
+        ]);
+
+               // Redireccionar con mensaje de éxito
+        return redirect()->route('productos.index')
+            ->with('edit', 'Producto actulizado correctamente');
     }
 
     /**
@@ -78,6 +104,8 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return redirect()->route('productos.index')
+            ->with('delete', 'Producto eliminado correctamente');
     }
 }

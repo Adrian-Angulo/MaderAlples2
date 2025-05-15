@@ -24,7 +24,13 @@ Route::get('/ubicacion', function () {
 })->name('ubicacion');
 
 Route::get('/productos/index', [ProductoController::class, 'index'])->name('productos.index');
+Route::put('/productos/{producto}',[ProductoController::class, 'update'])->name('productos.update');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
+Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+Route::get('/categorias/index', function () {
+    return view('categorias');
+})->name('categorias.index');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

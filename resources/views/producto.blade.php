@@ -229,8 +229,8 @@
                                                 <button type="button" class="btn-close btn-close-white"
                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            {{-- {{ route('productos.update', $producto->id) }} --}}
-                                            <form action="#" method="POST"
+                                            
+                                            <form action="{{ route('productos.update', $producto) }}" method="POST"
                                                 enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 @csrf
                                                 @method('PUT')
@@ -445,8 +445,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer bg-light">
-                                                {{-- {{ route('productos.destroy', $producto->id) }} --}}
-                                                <form action="#"
+                                                {{-- Formulario para eliminar  --}}
+                                                <form action="{{ route('productos.destroy', $producto) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
