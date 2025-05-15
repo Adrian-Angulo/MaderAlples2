@@ -12,24 +12,42 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        return view("producto", compact('productos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+
+
+        // Manejo de la imagen
+        $imagenPath = null;
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('productos', 'public');
+        }
+
+        // Creación del producto
+        Producto::create([
+            'nombre' => $request->nombre,
+            'categoria' => $request->categoria,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion,
+            'imagen' => $imagenPath,
+        ]);
+
+        // Redirección con mensaje de éxito
+        return redirect()->back()
+            ->with('success', 'Producto creado exitosamente');
     }
+
 
     /**
      * Display the specified resource.

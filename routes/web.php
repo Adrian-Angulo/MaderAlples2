@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,8 @@ Route::get('/ubicacion', function () {
     return view('MaderAlpes.ubicacion');
 })->name('ubicacion');
 
-Route::get('/productos', function () {
-    return view('producto');
-})->name('productos');
+Route::get('/productos/index', [ProductoController::class, 'index'])->name('productos.index');
+Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,4 +36,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

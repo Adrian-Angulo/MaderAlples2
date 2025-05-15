@@ -7,10 +7,14 @@
     <title>Sidebar Navigation</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <!-- Tabla stylo CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/tableStyle.css">
+
+    <!-- DataTables Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <!-- DataTables Responsive CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
     <style>
         .sidebar {
             width: 250px;
@@ -18,34 +22,37 @@
             position: fixed;
             transition: all 0.3s;
         }
-        
+
         .main-content {
             margin-left: 250px;
             transition: all 0.3s;
         }
-        
+
         .nav-link {
             border-radius: 0.25rem;
         }
-        
+
         .dropdown-toggle::after {
             transition: transform 0.2s ease-in-out;
         }
-        
+
         .dropdown-toggle[aria-expanded="true"]::after {
             transform: rotate(180deg);
         }
-        
+
         @media (max-width: 768px) {
             .sidebar {
                 margin-left: -250px;
             }
+
             .main-content {
                 margin-left: 0;
             }
+
             .sidebar.active {
                 margin-left: 0;
             }
+
             .main-content.active {
                 margin-left: 250px;
             }
@@ -61,7 +68,7 @@
 
     <div class="d-flex">
         <!-- Sidebar -->
-        <aside class="sidebar bg-white shadow-sm d-flex flex-column">
+        <aside id="sidebarToggle" class="sidebar bg-white shadow-sm d-flex flex-column">
             <!-- Sidebar Header -->
             <div class="p-3 border-bottom">
                 <a href="{{ route('dashboard') }}" class="d-flex align-items-center text-decoration-none">
@@ -75,13 +82,14 @@
                 <div class="p-3">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-1">
-                            <a href="{{route('dashboard')}}" class="nav-link text-dark d-flex align-items-center">
+                            <a href="{{ route('dashboard') }}" class="nav-link text-dark d-flex align-items-center">
                                 <i class="bi bi-grid me-3"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item mb-1">
-                            <a href="{{route('productos')}}" class="nav-link text-dark d-flex align-items-center">
+                            <a href="{{ route('productos.index') }}"
+                                class="nav-link text-dark d-flex align-items-center">
                                 <i class="bi bi-box-seam me-3"></i>
                                 <span>Productos</span>
                             </a>
@@ -107,14 +115,15 @@
                     </ul>
                 </div>
 
-                
+
             </div>
 
             <!-- Sidebar Footer -->
             <div class="p-3 border-top">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle w-100 d-flex align-items-center justify-content-between" 
-                            type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button
+                        class="btn btn-light dropdown-toggle w-100 d-flex align-items-center justify-content-between"
+                        type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="text-start">
                             <div class="fw-bold small text-truncate">{{ Auth::user()->name }}</div>
                             <div class="text-muted xsmall text-truncate">{{ Auth::user()->email }}</div>
@@ -133,7 +142,9 @@
                                 Configuración
                             </a>
                         </li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -156,7 +167,41 @@
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- jQuery (necesario para DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- DataTables Responsive JS -->
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabla-productos').DataTable({
+                responsive: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                },
+                columnDefs: [{
+                        orderable: false,
+                        targets: 5
+                    } // Desactivar ordenación en la columna de acciones
+                ],
+                order: [
+                    [0, 'asc']
+                ], // Ordenar por ID de forma ascendente por defecto
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'Todos']
+                ],
+                dom: '<"d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex"f>>t<"d-flex justify-content-between align-items-center mt-3"<"d-flex align-items-center"i><"d-flex"p>>',
+            });
+        });
+    </script>
+
     <script>
         // Toggle sidebar en móvil
         document.getElementById('sidebarToggle').addEventListener('click', function() {
@@ -167,4 +212,3 @@
 </body>
 
 </html>
-        
