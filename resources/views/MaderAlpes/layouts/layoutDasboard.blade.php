@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- DataTables Responsive CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
-       <style>
+    <style>
         /* Estilos para el sidebar y contenido principal */
         body {
             overflow-x: hidden;
@@ -146,7 +146,7 @@
 
 <body>
     <div class="overlay"></div>
-    
+
     <div id="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
@@ -162,31 +162,36 @@
             <div class="sidebar-body p-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} d-flex align-items-center">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-grid me-3"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('productos.index') }}" class="nav-link {{ request()->routeIs('productos.*') ? 'active' : '' }} d-flex align-items-center">
+                        <a href="{{ route('productos.index') }}"
+                            class="nav-link {{ request()->routeIs('productos.*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-box-seam me-3"></i>
                             <span>Productos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('categorias.index')}}" class="nav-link {{ request()->is('orders*') ? 'active' : '' }} d-flex align-items-center">
+                        <a href="{{ route('categorias.index') }}"
+                            class="nav-link {{ request()->is('orders*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-collection me-3"></i>
                             <span>Categorias</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/broadcasts" class="nav-link {{ request()->is('broadcasts*') ? 'active' : '' }} d-flex align-items-center">
+                        <a href="{{ route('usuarios.index') }}"
+                            class="nav-link {{ request()->is('broadcasts*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-people me-3"></i>
                             <span>Usuarios</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/settings" class="nav-link {{ request()->is('settings*') ? 'active' : '' }} d-flex align-items-center">
+                        <a href="/settings"
+                            class="nav-link {{ request()->is('settings*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-file-earmark-text me-3"></i>
                             <span>Reportes</span>
                         </a>
@@ -197,7 +202,8 @@
             <!-- Sidebar Footer -->
             <div class="sidebar-footer">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle w-100 d-flex align-items-center justify-content-between"
+                    <button
+                        class="btn btn-light dropdown-toggle w-100 d-flex align-items-center justify-content-between"
                         type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="text-start">
                             <div class="fw-bold small text-truncate">{{ Auth::user()->name }}</div>
@@ -244,17 +250,36 @@
                     </button>
                     <div class="ms-auto d-flex align-items-center">
                         <div class="dropdown me-3">
-                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle border-0" type="button"
                                 id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-bell"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    3
-                                </span>
+                                {{ Auth::user()->name }}
+
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                                <li><a class="dropdown-item" href="#">Notificación 1</a></li>
-                                <li><a class="dropdown-item" href="#">Notificación 2</a></li>
-                                <li><a class="dropdown-item" href="#">Notificación 3</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <i class="bi bi-person me-2"></i>
+                                        Mi Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <i class="bi bi-gear me-2"></i>
+                                        Configuración
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item d-flex align-items-center">
+                                            <i class="bi bi-box-arrow-right me-2"></i>
+                                            Cerrar sesión
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -280,18 +305,18 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
-    
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Toggle sidebar
-            $('#sidebarCollapse, #sidebarCollapseBtn').on('click', function () {
+            $('#sidebarCollapse, #sidebarCollapseBtn').on('click', function() {
                 $('#sidebar').toggleClass('collapsed active');
                 $('#content').toggleClass('expanded shrink');
                 $('.overlay').toggleClass('active');
             });
 
             // Cerrar sidebar al hacer clic en overlay (en móviles)
-            $('.overlay').on('click', function () {
+            $('.overlay').on('click', function() {
                 $('#sidebar').removeClass('active');
                 $('#content').removeClass('shrink');
                 $('.overlay').removeClass('active');
@@ -308,8 +333,13 @@
                         orderable: false,
                         targets: 5
                     }],
-                    order: [[0, 'asc']],
-                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'Todos']],
+                    order: [
+                        [0, 'asc']
+                    ],
+                    lengthMenu: [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, 'Todos']
+                    ],
                     dom: '<"d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex"f>>t<"d-flex justify-content-between align-items-center mt-3"<"d-flex align-items-center"i><"d-flex"p>>',
                 });
             }
@@ -361,7 +391,7 @@
             };
 
             // Ajustar sidebar en cambio de tamaño de ventana
-            $(window).resize(function () {
+            $(window).resize(function() {
                 if ($(window).width() <= 768) {
                     $('#sidebar').addClass('collapsed').removeClass('active');
                     $('#content').addClass('expanded').removeClass('shrink');
@@ -383,7 +413,29 @@
             }
         });
     </script>
-    
+    <script>
+        $(document).ready(function() {
+            $('#tabla-categorias').DataTable({
+                responsive: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                },
+                columnDefs: [{
+                    orderable: false,
+                    targets: 5
+                }],
+                order: [
+                    [0, 'asc']
+                ],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'Todos']
+                ],
+                dom: '<"d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex"f>>t<"d-flex justify-content-between align-items-center mt-3"<"d-flex align-items-center"i><"d-flex"p>>',
+            });
+        });
+    </script>
+
     @stack('scripts')
 </body>
 
