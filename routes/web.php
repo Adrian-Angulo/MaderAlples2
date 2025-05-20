@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('MaderAlpes.index');
 })->name('index');
-Route::get('/catalogo', function () {
-    return view('MaderAlpes.catalogo');
-})->name('catalogo');
+
+Route::get('/catalogo', [ProductoController::class, 'mostrarProductos'])->name('catalogo');
 
 Route::get('/contact', function () {
     return view('MaderAlpes.contact');

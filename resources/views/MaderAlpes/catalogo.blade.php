@@ -60,84 +60,64 @@
                 </div>
             </div>
             <div class="row pb-3">
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Productos1Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Pintura</h5>
+                @foreach ($productos as $producto)
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <img class="card-img-top img-fluid rounded-top" src="{{ asset('storage/' . ($producto->imagen ?? 'Productos1Maderalpes.png')) }}" alt="{{ $producto->nombre }}" style="object-fit:cover; height:220px;">
+                            <div class="card-body bg-white p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-primary font-weight-bold text-truncate" title="{{ $producto->nombre }}">{{ $producto->nombre }}</h5>
+                                    <p class="card-text text-secondary small" style="min-height:60px;">{{ Str::limit($producto->descripcion, 80) }}</p>
+                                </div>
+                                <div class="mt-3 d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#productoModal{{ $producto->id }}">
+                                        Ver detalles
+                                    </button>
+                                    <form action="{{-- {{ route('carrito.agregar', $producto->id) }} --}}" method="POST" class="m-0 p-0">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm" aria-label="Agregar {{ $producto->nombre }} al carrito">
+                                            <i class="fa fa-cart-plus"></i> Agregar
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            <p>Pinta tus espacios con nuestra fórmula de alta cobertura, secado rápido y acabado profesional. Ideal para interiores y exteriores.</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Productos2Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Pegamento</h5>
+
+                    <!-- Modal de Detalles del Producto -->
+                    <div class="modal fade" id="productoModal{{ $producto->id }}" tabindex="-1" role="dialog" aria-labelledby="productoModalLabel{{ $producto->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="productoModalLabel{{ $producto->id }}">{{ $producto->nombre }}</h5>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-wrap">
+                                    <div class="col-md-5 p-0 mb-3 mb-md-0">
+                                        <img src="{{ asset('storage/' . ($producto->imagen ?? 'Productos1Maderalpes.png')) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded" style="max-height:300px; object-fit:cover;">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-2"><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
+                                        <p class="mb-2"><strong>Precio:</strong> ${{ number_format($producto->precio, 0, ',', '.') }}</p>
+                                        @if($producto->stock !== null)
+                                            <p class="mb-2"><strong>Stock:</strong> {{ $producto->stock > 0 ? $producto->stock : 'No disponible' }}</p>
+                                        @endif
+                                        <form action="{{-- {{ route('carrito.agregar', $producto->id) }} --}}" method="POST" class="mt-3">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success btn-block" aria-label="Agregar {{ $producto->nombre }} al carrito">
+                                                <i class="fa fa-cart-plus"></i> Agregar al carrito
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <p>Nuestro pegamento de secado rápido garantiza una adhesión fuerte y duradera en todo tipo de superficies. Ideal para uso escolar, doméstico o profesional.</p>
-                            
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Productos3Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Taladro</h5>
-                            </div>
-                            <p>Taladro compacto y potente, ideal para todo tipo de proyectos. Precisión, velocidad y fuerza para perforar con facilidad cualquier superficie.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Productos4Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Pegamento de madera</h5>
-                            </div>
-                            <p>Pegante especializado para madera, ofrece una unión resistente y duradera. Ideal para carpintería, manualidades y reparaciones en madera.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Productos5Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Pintura Automotiva</h5>
-                            </div>
-                            <p>Elaboradas con una mezcla precisa de componentes, que permiten un acabado fino de secado rápido, con buen cubrimiento, flexibilidad y brillo</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                        <img class="card-img-top" src="img/Proyectos1.2Maderalpes.png" alt="">
-                        <div class="card-body bg-white p-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <a class="btn btn-primary" href=""><i class="fa fa-link"></i></a>
-                                <h5 class="m-0 ml-3 text-truncate">Madera</h5>
-                            </div>
-                            <p>Descubre la calidez y elegancia que solo la madera puede aportar a tus espacios. Ideal para interiores, su textura natural y estilo atemporal transforman cualquier ambiente en un lugar acogedor y sofisticado.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                
+                @endforeach
+
+
 
             </div>
 
