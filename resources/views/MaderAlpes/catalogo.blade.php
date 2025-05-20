@@ -73,7 +73,7 @@
                                     <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#productoModal{{ $producto->id }}">
                                         Ver detalles
                                     </button>
-                                    <form action="{{-- {{ route('carrito.agregar', $producto->id) }} --}}" method="POST" class="m-0 p-0">
+                                    <form action="{{ route('carrito.store', $producto->id) }}" method="POST" class="m-0 p-0">
                                         @csrf
                                         <button type="submit" class="btn btn-success btn-sm" aria-label="Agregar {{ $producto->nombre }} al carrito">
                                             <i class="fa fa-cart-plus"></i> Agregar
