@@ -32,6 +32,7 @@ Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->
 Route::get("/admin/proyectos/index",[ProyectoController::class, 'index'])->name('admin.proyecto.index');
 Route::post("/admin/proyectos",[ProyectoController::class, 'store'])->name('admin.proyecto.store');
 Route::put('/admin/proyectos/{proyecto}', [ProyectoController::class, 'update'])->name('admin.proyecto.update');
+Route::delete('/admin/proyectos/{proyecto}', [ProyectoController::class, 'destroy'])->name('admin.proyecto.destroy');
 
 
 Route::get('/dashboard',[ProductoController::class, 'index']

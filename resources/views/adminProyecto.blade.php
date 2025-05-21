@@ -47,7 +47,66 @@
             </button>
         </div>
     </div>
+    {{-- Notificacion de proyecto agregado --}}
+    @if (session('success'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+            <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="alertSuccessProyecto">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                {{ session('success') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                var alert = document.getElementById('alertSuccessProyecto');
+                if (alert) {
+                    var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                    bsAlert.close();
+                }
+            }, 5000);
+        </script>
+    @endif
+     {{-- Fin notificacion de proyecto agregado --}}
 
+    {{-- Notificacion de proyecto editado --}}
+    @if (session('edit'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+            <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="alertSuccessProyecto">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                {{ session('edit') }}
+            </div>
+        </div>
+        <script>
+            setTimeout(function() {
+                var alert = document.getElementById('alertSuccessProyecto');
+                if (alert) {
+                    var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                    bsAlert.close();
+                }
+            }, 5000);
+        </script>
+    @endif
+    {{-- Fin notificacion de proyecto editado --}}
+
+       {{-- Notificacion de proyecto eliminado --}}
+    @if (session('delete'))
+       <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+          <div class="alert alert-success alert-dismissible fade show shadow" role="alert" id="alertSuccessProyecto">
+             <i class="bi bi-check-circle-fill me-2"></i>
+             {{ session('delete') }}
+          </div>
+       </div>
+       <script>
+          setTimeout(function() {
+             var alert = document.getElementById('alertSuccessProyecto');
+             if (alert) {
+                var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                bsAlert.close();
+             }
+          }, 5000);
+       </script>
+    @endif
+    {{-- Fin notificacion de proyecto eliminado --}}
+    
     <!-- Tabla de proyectos -->
     <div class="card card-dashboard">
         <div class="card-body p-0">
@@ -165,7 +224,7 @@
                                                         <h6 class="fw-bold mb-2">
                                                             <i class="bi bi-clock-history me-1"></i> Tiempo de Construcción
                                                         </h6>
-                                                        <span class="badge bg-info text-dark">{{ $proyecto->tiempo_construccion }}</span>
+                                                        <span class="badge bg-info text-dark">{{ $proyecto->Tiempo_construccion }}</span>
                                                     </div>
                                                     <div class="mb-3">
                                                         <h6 class="fw-bold mb-2">
@@ -350,9 +409,13 @@
                                             data-bs-dismiss="modal">
                                             <i class="bi bi-x-circle me-1"></i>Cancelar
                                         </button>
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="bi bi-trash3-fill me-1"></i>Eliminar Proyecto
-                                        </button>
+                                        <form method="POST" action="{{ route('admin.proyecto.destroy', $proyecto) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="bi bi-trash3-fill me-1"></i>Eliminar Proyecto
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

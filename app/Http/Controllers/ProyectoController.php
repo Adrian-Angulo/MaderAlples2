@@ -103,6 +103,13 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        if ($proyecto->imagen) {
+            Storage::delete($proyecto->imagen);
+        }
+
+        $proyecto->delete();
+
+        return redirect()->route('admin.proyecto.index')
+            ->with('delete', 'Proyecto eliminado correctamente.');
     }
 }
