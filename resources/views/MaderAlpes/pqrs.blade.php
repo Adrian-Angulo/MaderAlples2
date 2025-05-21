@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="bg-primary p-5 rounded">
-                        <form action="{{-- {{ route('pqrs.store') }} --}}" method="POST" id="pqrsForm">
+                        <form action="{{ route('pqrs.store') }}" method="POST" id="pqrsForm">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 p-4" placeholder="Nombre completo *" required name="nombre" id="nombre">

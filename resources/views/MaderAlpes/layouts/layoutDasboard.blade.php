@@ -183,19 +183,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{-- {{ route('usuarios.index') }} --}}"
+                        <a href="{{ route('admin.pqrs.index') }}"
                             class="nav-link {{ request()->is('broadcasts*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-people me-3"></i>
-                            <span>Usuarios</span>
+                            <span>pqrs</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/settings"
-                            class="nav-link {{ request()->is('settings*') ? 'active' : '' }} d-flex align-items-center">
-                            <i class="bi bi-file-earmark-text me-3"></i>
-                            <span>Reportes</span>
-                        </a>
-                    </li>
+                   
                 </ul>
             </div>
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PqrsController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
@@ -38,11 +39,15 @@ Route::post("/admin/proyectos",[ProyectoController::class, 'store'])->name('admi
 Route::put('/admin/proyectos/{proyecto}', [ProyectoController::class, 'update'])->name('admin.proyecto.update');
 Route::delete('/admin/proyectos/{proyecto}', [ProyectoController::class, 'destroy'])->name('admin.proyecto.destroy');
 
-
+Route::get('/pqrs', [PqrsController::class, 'index'])->name('pqrs');
+Route::post('/pqrs', [PqrsController::class, 'store'])->name('pqrs.store');
+Route::get('/pqrs/success', [PqrsController::class, 'success'])->name('pqrs.success');
+Route::get('/admin/pqrs', [PqrsController::class, 'adminIndex'])->name('admin.pqrs.index');
 
 
 Route::get('/dashboard',[ProductoController::class, 'index']
 )->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
