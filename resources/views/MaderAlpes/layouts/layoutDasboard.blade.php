@@ -150,13 +150,13 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
-            <!-- Sidebar Header -->
+            {{-- <!-- Sidebar Header -->
             <div class="sidebar-header">
                 <a href="{{ route('dashboard') }}" class="d-flex align-items-center text-decoration-none">
                     <img src="/img/logoMaderalpes.png" alt="Logo" class="me-2" style="width: 40px; height: 20px;">
                     <span class="fw-bold ms-2">Dashboard</span>
                 </a>
-            </div>
+            </div> --}}
 
             <!-- Sidebar Body -->
             <div class="sidebar-body p-3">

@@ -107,7 +107,7 @@
 
                 <!-- Social Login Divider -->
                 <div class="mt-6">
-                    <div class="relative">
+                    {{-- <div class="relative">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-300"></div>
                         </div>
@@ -116,10 +116,10 @@
                                 O inicia sesión con
                             </span>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Social Login Buttons -->
-                    <div class="mt-6 grid grid-cols-2 gap-3">
+                    {{-- <div class="mt-6 grid grid-cols-2 gap-3">
                         <div>
                             <a href="#"
                                 class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
@@ -152,17 +152,17 @@
                                 <span class="ml-2">GitHub</span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
-            <!-- Free Trial Link -->
+            {{-- <!-- Free Trial Link -->
             <div class="mt-6 text-center text-sm text-white">
                 No tienes una cuenta?
                 <a href="{{ route('register') }}" class="font-medium text-maderalpes-gold hover:text-maderalpes-green">
                     Regístrate
                 </a>
-            </div>
+            </div> --}}
 
             <!-- Slogan -->
             <div class="mt-2 text-center text-sm text-maderalpes-gold italic font-semibold">

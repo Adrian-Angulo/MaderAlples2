@@ -41,29 +41,7 @@
                         <li class="nav-item"><a href="{{route('contacto')}}" class="nav-item nav-link active">Contacto</a></li>
                     </div>
                 </div>
-                <div class="dropdown text-end">
-                    @auth
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user mr-1"></i>
-                            @if(Auth::user()->rol === 'cliente')
-                                {{ Auth::user()->name }}
-                            @else
-                                Usuario
-                            @endif
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Cerrar sesión
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-light">Iniciar sesión</a>
-                    @endauth
-                </div>
+                
             </nav>
         </div>
     </div>
@@ -105,6 +83,7 @@
             <p><strong>Filial de:</strong> MADERATLAS</p>
             <p><strong>Sucursales:</strong> Tuquerres e Ipiales</p>
             <p><strong>NIT:</strong> 1086103024-3</p>
+            <a href="{{ route('login') }}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Administracion</a>
         </div>
         <!-- Formulario de boletín -->
         <div class="col-lg-3 col-md-6 mb-5 text-center">
