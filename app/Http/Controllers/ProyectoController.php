@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
 {
@@ -29,8 +30,33 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Inicializar la variable de ruta de imagen
+        $imagenPath = null;
+
+        /*  // Procesar la imagen si se ha subido una
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            // Guardar la imagen en storage/app/public/productos
+            $imagenPath = $request->file('imagen')->store('productos', 'public');
+        }
+ */
+        if ($request->hasFile('imagen')) {
+            $imagenPath = Storage::put('productos', $request->imagen);
+        }
+
+        // Creación del producto
+        Proyecto::create([
+            'nombre' => $request->nombre,
+            'Tiempo_construccion' => $request->tiempo_construccion,    
+            'descripcion' => $request->descripcion,
+            'imagen' => $imagenPath,
+        ]);
+
+
+        // Redireccionar con mensaje de éxito
+        return redirect()->route('admin.proyecto.index')
+            ->with('success', 'Proyecto agregado correctamente.');
     }
+    
 
     /**
      * Display the specified resource.

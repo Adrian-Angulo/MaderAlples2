@@ -103,7 +103,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="fw-semibold text-info">{{ $proyecto->tiempo_construccion }}</span>
+                                <span class="fw-semibold text-info">{{ $proyecto->Tiempo_construccion }}</span>
                             </td>
                             <td>
                                 <div class="text-truncate-2" style="max-width: 250px;">
@@ -398,7 +398,8 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
-            <form>
+            <form method="POST" action="{{ route('admin.proyecto.store') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
                         <div class="col-12">
@@ -407,6 +408,7 @@
                                     <h6 class="card-subtitle mb-3 text-muted">
                                         <i class="bi bi-info-circle me-1"></i>Información Básica
                                     </h6>
+
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="nombre" class="form-label fw-medium">Nombre del Proyecto</label>
