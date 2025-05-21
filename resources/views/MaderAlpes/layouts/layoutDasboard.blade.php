@@ -150,24 +150,24 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
-            {{-- <!-- Sidebar Header -->
+            <!-- Sidebar Header -->
             <div class="sidebar-header">
                 <a href="{{ route('dashboard') }}" class="d-flex align-items-center text-decoration-none">
                     <img src="/img/logoMaderalpes.png" alt="Logo" class="me-2" style="width: 40px; height: 20px;">
-                    <span class="fw-bold ms-2">Dashboard</span>
+                    <span class="fw-bold ms-2">administracion</span>
                 </a>
-            </div> --}}
+            </div>
 
             <!-- Sidebar Body -->
             <div class="sidebar-body p-3">
                 <ul class="nav flex-column">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
                             class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-grid me-3"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('productos.index') }}"
                             class="nav-link {{ request()->routeIs('productos.*') ? 'active' : '' }} d-flex align-items-center">
@@ -179,7 +179,7 @@
                         <a href="{{ route('categorias.index') }}"
                             class="nav-link {{ request()->is('orders*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-collection me-3"></i>
-                            <span>Categorias</span>
+                            <span>Proyectos</span>
                         </a>
                     </li>
                     <li class="nav-item">
