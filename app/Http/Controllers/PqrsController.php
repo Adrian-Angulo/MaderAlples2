@@ -52,7 +52,7 @@ class PqrsController extends Controller
        /*   // Enviar correo de confirmación al usuario
         Mail::to($validated['email'])->send(new PqrsConfirmation($pqrs));  */
 
-        // Enviar notificación interna
+      /*   // Enviar notificación interna
         Mail::to('bowleskamilo@gmail.com')->send(new PqrsNotification(
             $request->nombre,
             $request->email,
@@ -60,7 +60,7 @@ class PqrsController extends Controller
             $request->tipo,
             $request->mensaje
 
-        ));
+        )); */
 
         // Redireccionar con mensaje de éxito
         return redirect()->route('pqrs', ['radicado' => $radicado]);
