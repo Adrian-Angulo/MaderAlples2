@@ -216,7 +216,9 @@
                                         <button type="button" class="btn-close btn-close-white"
                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form>
+                                    <form method="POST" action="{{ route('admin.proyecto.update', $proyecto) }}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="modal-body p-4">
                                             <div class="row mb-4">
                                                 <div class="col-md-12 mb-3">
@@ -256,7 +258,7 @@
                                                     </label>
                                                     <input type="text" class="form-control"
                                                         id="tiempo{{ $proyecto->id }}" name="tiempo_construccion"
-                                                        value="{{ $proyecto->tiempo_construccion }}" required>
+                                                        value="{{ $proyecto->Tiempo_construccion }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">

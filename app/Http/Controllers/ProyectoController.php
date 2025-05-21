@@ -79,7 +79,23 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, Proyecto $proyecto)
     {
-        //
+        $imagenPath = null;
+
+        if ($request->hasFile('imagen')) {
+            $imagenPath = Storage::put('productos', $request->imagen);
+        }
+
+
+        $proyecto->update([
+            'nombre' => $request->input('nombre'),
+            'Tiempo_construccion' => $request->input(('tiempo_construccion')),
+            'descripcion' => $request->input('descripcion'),
+            'imagen' => $imagenPath,
+        ]);
+
+               // Redireccionar con mensaje de éxito
+        return redirect()->route('admin.proyecto.index')
+            ->with('edit', 'Proyecto actulizado correctamente');
     }
 
     /**
