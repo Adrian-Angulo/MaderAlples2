@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\CarritoController;
-use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CatalogoController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('MaderAlpes.index');
 })->name('index');
 
-Route::get('/catalogo', [ProductoController::class, 'mostrarProductos'])->name('catalogo');
+Route::get('/catalogo', [CatalogoController::class, 'catalogo'])->name('catalogo');
 
 Route::get('/contact', function () {
     return view('MaderAlpes.contact');
@@ -25,6 +24,7 @@ Route::get('/nosotros', function () {
 Route::get('/ubicacion', function () {
     return view('MaderAlpes.ubicacion');
 })->name('ubicacion');
+
 Route::get('/productos/index', [ProductoController::class, 'index'])->name('productos.index');
 Route::put('/productos/{producto}',[ProductoController::class, 'update'])->name('productos.update');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
@@ -33,6 +33,8 @@ Route::get("/admin/proyectos/index",[ProyectoController::class, 'index'])->name(
 Route::post("/admin/proyectos",[ProyectoController::class, 'store'])->name('admin.proyecto.store');
 Route::put('/admin/proyectos/{proyecto}', [ProyectoController::class, 'update'])->name('admin.proyecto.update');
 Route::delete('/admin/proyectos/{proyecto}', [ProyectoController::class, 'destroy'])->name('admin.proyecto.destroy');
+
+
 
 
 Route::get('/dashboard',[ProductoController::class, 'index']
