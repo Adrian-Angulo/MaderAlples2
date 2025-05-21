@@ -108,9 +108,4 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')
             ->with('delete', 'Producto eliminado correctamente');
     }
-
-    public function mostrarProductos()  {
-        $productos = Producto::all();
-        return view("MaderAlpes.catalogo", compact('productos'));
-    }
 }

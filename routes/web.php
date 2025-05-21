@@ -11,6 +11,10 @@ Route::get('/', function () {
     return view('MaderAlpes.index');
 })->name('index');
 
+Route::get('/pqrs', function ()  {
+    return view('MaderAlpes.pqrs');
+})->name('pqrs.create');
+
 Route::get('/catalogo', [CatalogoController::class, 'catalogo'])->name('catalogo');
 
 Route::get('/contact', function () {

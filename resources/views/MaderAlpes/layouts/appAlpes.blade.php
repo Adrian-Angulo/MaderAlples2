@@ -36,7 +36,7 @@
                         <li class="nav-item"><a href="/"   class="nav-link active">Inicio</a></li>
                          <li class="nav-item"><a href="{{route('nosotros')}}"class="nav-link">Nosotros</a></li>
                         <li class="nav-item"><a href="{{route('catalogo')}}"class="nav-link">Catálogo</a></li>
-                        <li class="nav-item"><a href="#"class="nav-link">PQRS</a></li>
+                        <li class="nav-item"><a href="{{route('pqrs.create')}}"class="nav-link">PQRS</a></li>
                         <li class="nav-item"><a href="{{route('ubicacion')}}"class="nav-link">Ubicación</a></li>
                         <li class="nav-item"><a href="{{route('contacto')}}" class="nav-item nav-link active">Contacto</a></li>
                     </div>
