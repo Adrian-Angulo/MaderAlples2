@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pqrs', function (Blueprint $table) {
             $table->id();
             $table->string('radicado')->unique();
+            $table->string('asunto');
             $table->string('nombre');
             $table->string('email');
             $table->string('telefono');

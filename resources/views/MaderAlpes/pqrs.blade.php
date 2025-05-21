@@ -72,6 +72,10 @@
                         <form action="{{ route('pqrs.store') }}" method="POST" id="pqrsForm">
                             @csrf
                             <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" placeholder="Asunto" required name="asunto" id="asunto">
+                                <div class="invalid-feedback">Por favor ingrese asunto de solicitud.</div>
+                            </div>
+                            <div class="form-group">
                                 <input type="text" class="form-control border-0 p-4" placeholder="Nombre completo *" required name="nombre" id="nombre">
                                 <div class="invalid-feedback">Por favor ingrese su nombre completo.</div>
                             </div>

@@ -28,6 +28,7 @@ class Pqrs extends Model
         'telefono',
         'tipo',
         'sucursal',
+        'asunto',
         'mensaje',
         'estado',
         'respuesta',

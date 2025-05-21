@@ -30,6 +30,7 @@ class PqrsController extends Controller
             'telefono' => 'required|string|max:20',
             'tipo' => 'required|in:peticion,queja,reclamo,sugerencia',
             'sucursal' => 'nullable|in:pasto,ipiales,tuquerres',
+            'asunto' => 'required|string|max:255',
             'mensaje' => 'required|string|min:10',
             'terminos' => 'required|accepted',
         ]);
@@ -45,6 +46,7 @@ class PqrsController extends Controller
             'telefono' => $validated['telefono'],
             'tipo' => $validated['tipo'],
             'sucursal' => $validated['sucursal'],
+            'asunto' => $validated['asunto'],
             'mensaje' => $validated['mensaje'],
             'estado' => 'recibido',
         ]);
@@ -77,6 +79,9 @@ class PqrsController extends Controller
 
     public function adminIndex(){
         $pqrs = Pqrs::all();
-        return view('adminPqrs', compact("pqrs"));
+        $total = $pqrs->count();
+        $pendientes = $pqrs->where('estado', 'recibido')->count();
+        $enProceso = $pqrs->where('estado', 'en proceso')->count();
+        return view('adminPqrs', compact('pqrs', 'total', 'pendientes', 'enProceso'));
     }
 }

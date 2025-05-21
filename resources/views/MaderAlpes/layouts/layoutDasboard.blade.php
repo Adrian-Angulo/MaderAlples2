@@ -189,49 +189,12 @@
                             <span>pqrs</span>
                         </a>
                     </li>
-                   
+
                 </ul>
             </div>
 
-            <!-- Sidebar Footer -->
-            <div class="sidebar-footer">
-                <div class="dropdown">
-                    <button
-                        class="btn btn-light dropdown-toggle w-100 d-flex align-items-center justify-content-between"
-                        type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="text-start">
-                            <div class="fw-bold small text-truncate">{{ Auth::user()->name }}</div>
-                            <div class="text-muted xsmall text-truncate">{{ Auth::user()->email }}</div>
-                        </div>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end w-100" aria-labelledby="userDropdown">
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-person me-2"></i>
-                                Mi Perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-gear me-2"></i>
-                                Configuración
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="dropdown-item d-flex align-items-center">
-                                    <i class="bi bi-box-arrow-right me-2"></i>
-                                    Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            
+            
         </nav>
 
         <!-- Contenido Principal -->
@@ -420,6 +383,27 @@
                 }],
                 order: [
                     [0, 'asc']
+                ],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'Todos']
+                ],
+                dom: '<"d-flex justify-content-between align-items-center mb-3"<"d-flex align-items-center"l><"d-flex"f>>t<"d-flex justify-content-between align-items-center mt-3"<"d-flex align-items-center"i><"d-flex"p>>',
+            });
+        });
+
+        $(document).ready(function() {
+            $('#tabla-pqrs').DataTable({
+                responsive: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                },
+                columnDefs: [{
+                    orderable: false,
+                    targets: 7
+                }],
+                order: [
+                    [4, 'desc']
                 ],
                 lengthMenu: [
                     [10, 25, 50, -1],
