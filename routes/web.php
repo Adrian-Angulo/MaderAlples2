@@ -4,6 +4,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +25,11 @@ Route::get('/nosotros', function () {
 Route::get('/ubicacion', function () {
     return view('MaderAlpes.ubicacion');
 })->name('ubicacion');
-
 Route::get('/productos/index', [ProductoController::class, 'index'])->name('productos.index');
 Route::put('/productos/{producto}',[ProductoController::class, 'update'])->name('productos.update');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
 Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
-Route::get('/categorias/index', [CategoriaController::class, 'index'])->name('categorias.index');
-Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
-Route::put('/categorias/{categoria}', [CategoriaController::class, 'update'])->name('categorias.update');
-Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::get("/admin/proyectos",[ProyectoController::class, 'index'])->name('admin.proyecto.index');
 
 
 Route::get('/dashboard',[ProductoController::class, 'index']
@@ -44,6 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/carrito/{id}', [CarritoController::class, 'store'])->name('carrito.store');
+
 
 require __DIR__ . '/auth.php';

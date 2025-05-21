@@ -1,7 +1,7 @@
 @extends('MaderAlpes.layouts.layoutDasboard')
 
 @section('contenido')
-@php
+{{-- @php
     // Datos temporales de proyectos
     $proyectos = [
         (object)[
@@ -29,7 +29,7 @@
             'created_at' => now(),
         ],
     ];
-@endphp
+@endphp --}}
 
 <div class="container-fluid py-4">
     <!-- Header -->

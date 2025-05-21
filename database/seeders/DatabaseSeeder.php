@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Producto;
+use App\Models\Proyecto;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+        Proyecto::factory(20)->create();
         Producto::factory(20)->create();
         User::factory()->create([
             'name' => 'Adrian Castillo',

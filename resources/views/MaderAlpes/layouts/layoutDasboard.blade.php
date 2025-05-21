@@ -176,14 +176,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('categorias.index') }}"
+                        <a href="{{ route('admin.proyecto.index') }}"
                             class="nav-link {{ request()->is('orders*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-collection me-3"></i>
                             <span>Proyectos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('usuarios.index') }}"
+                        <a href="{{-- {{ route('usuarios.index') }} --}}"
                             class="nav-link {{ request()->is('broadcasts*') ? 'active' : '' }} d-flex align-items-center">
                             <i class="bi bi-people me-3"></i>
                             <span>Usuarios</span>

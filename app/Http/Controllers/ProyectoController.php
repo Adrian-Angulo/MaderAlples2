@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrito;
-use App\Models\Producto;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 
-class CarritoController extends Controller
+class ProyectoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $proyectos = Proyecto::all();
+        return view("adminProyecto", compact('proyectos'));
     }
 
     /**
@@ -27,16 +27,15 @@ class CarritoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $id)
+    public function store(Request $request)
     {
-        /* $producto = Producto::findOrFail($id); */
-        return "el producto es $id";
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Carrito $carrito)
+    public function show(Proyecto $proyecto)
     {
         //
     }
@@ -44,7 +43,7 @@ class CarritoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Carrito $carrito)
+    public function edit(Proyecto $proyecto)
     {
         //
     }
@@ -52,7 +51,7 @@ class CarritoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carrito $carrito)
+    public function update(Request $request, Proyecto $proyecto)
     {
         //
     }
@@ -60,7 +59,7 @@ class CarritoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Carrito $carrito)
+    public function destroy(Proyecto $proyecto)
     {
         //
     }
